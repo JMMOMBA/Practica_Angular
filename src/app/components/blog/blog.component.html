@@ -1,1 +1,8 @@
-<p>blog works!</p>
+
+
+<div *ngIf="posts && posts.length > 0">
+    <img [src]="formulario.imagen[blogActual].url" alt="">
+</div>
+<button class="btn btn-primary btn-block mb-2">ANTERIOR</button>
+<Button class="btn btn-success btn-block ml-1 ">SIGUIENTE</Button>
+
