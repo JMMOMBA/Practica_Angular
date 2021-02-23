@@ -28,9 +28,10 @@ export class FormularioComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onSubmit() {
-        this.postService.add(this.formulario.value);
+    async onSubmit() {
+        const arrPost = await this.postService.add(this.formulario.value);
         this.formulario.reset();
+        //console.log(arrPost);
 
     }
 

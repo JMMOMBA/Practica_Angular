@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Post, PostService } from 'src/app/Post.service';
 
 @Component({
@@ -9,15 +10,23 @@ import { Post, PostService } from 'src/app/Post.service';
 export class BlogComponent implements OnInit {
 
   posts: Post[];
-  blogActual: number;
 
-  constructor(private postService: PostService) {
-    this.blogActual = 0;
+  constructor(private postService: PostService) { }
+
+  ngOnInit(): void {
+    this.postService.getAllPosts()
+      .then(listaPosts => {
+        this.posts = listaPosts;
+      })
   }
+  async onChange($event) {
 
-  async ngOnInit() {
-    const posts = await this.postService.getAllPosts();
+    console.log($event)
+    this.posts = await this.postService.getPostsByCategoria($event);
   }
-
+  getDate(pDateString) {
+    const arrDate = pDateString.split('-');
+    return `${arrDate[1]}/${arrDate[0]}/${arrDate[2]}`;
+  }
 }
 
